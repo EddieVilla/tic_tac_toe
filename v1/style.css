@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 300px;
+    height: 300px;
+    border-collapse: collapse;
+}
+
+td {
+    border: 2px solid black;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-size: 60px;
+    cursor: pointer;
+}
