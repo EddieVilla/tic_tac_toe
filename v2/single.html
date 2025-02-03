@@ -56,7 +56,7 @@
 </head>
 <body>
   <div>
-    <div id="message2">div text box</div>
+    <div id="debugmessage">div text box</div>
     <div class="board" id="board"></div>
     <div class="message" id="message"></div>
     <button class="reset" id="reset">Reset</button>
@@ -65,7 +65,7 @@
   <script>
     const board = document.getElementById('board');
     const message = document.getElementById('message');
-    const message2 = document.getElementById('message2');
+    const debugmessage = document.getElementById('debugmessage');
     const resetButton = document.getElementById('reset');
 
     let currentPlayer = 'X';
@@ -89,7 +89,7 @@
     function handleClick(event) {
       const cell = event.target;
       const cellIndex = cell.getAttribute('data-index');
-      message2.textContent = `Clicked ${cellIndex}`;
+      debugmessage.textContent = `Clicked ${cellIndex}`;
 
       if (gameState[cellIndex] || !gameActive) return;
 
@@ -125,7 +125,7 @@
       currentPlayer = 'X';
       gameActive = true;
       message.textContent = `Player ${currentPlayer}'s turn`;
-      message2.textContent = `game started`;
+      debugmessage.textContent = `game started`;
       board.innerHTML = '';
       createBoard();
     }
