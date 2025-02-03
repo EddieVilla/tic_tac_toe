@@ -1,1 +1,4 @@
 - [X] text box for debugging
+- [ ] parameterize grid template columns
+- [X] win by 3 on 4x4
+- [ ] max cells on screen without scrolling?
