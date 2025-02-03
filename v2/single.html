@@ -18,7 +18,7 @@
     }
     .board {
       display: grid;
-      grid-template-columns: repeat(3, 100px);
+      grid-template-columns: repeat(4, 100px);
       grid-gap: 5px;
     }
     .cell {
@@ -68,13 +68,20 @@
 
     let currentPlayer = 'X';
     let gameActive = true;
-    let numCells = 9;
+    let numCells = 16;
     let gameState = Array(numCells).fill(null);
 
+    //3x3. win by 3.
+    //const winningCombinations = [
+    //  [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    //  [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    //  [0, 4, 8], [2, 4, 6]
+    //]
+    //4x4. win by 4.
     const winningCombinations = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8],
-      [0, 3, 6], [1, 4, 7], [2, 5, 8],
-      [0, 4, 8], [2, 4, 6]
+      [0, 1, 2, 3], [4, 5, 6, 7],[8, 9, 10, 11],[12, 13, 14, 15],
+      [0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15], 
+      [0, 5, 10, 15], [3, 6, 9, 12]
     ];
 
     function handleClick(event) {
@@ -105,8 +112,8 @@
 
     function checkWin() {
       return winningCombinations.some(combination => {
-        const [a, b, c] = combination;
-        return gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c];
+        const [a, b, c, d] = combination;
+        return gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c] && gameState[a] === gameState[d];
       });
     }
 
