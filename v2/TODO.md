@@ -3,5 +3,6 @@
 - [X] win by 3 on 4x4
 - [X] max cells on screen without scrolling?
 - IN GENERAL, do "build-your-own" type tasks on planes or other places with no internet, with some high level user/business goal in mind
-- [ ] add render keyword in config.yaml for winningsCombinations, and make sure render.py can handle it
+- [X] add render keyword in config.yaml for winningsCombinations, and make sure render.py can handle it
 - [ ] Parametrize 3 vs 4 in a row to win
+- [ ] work a lot in Chicago, like there is nothing to do, that way you can go elsewhere to do things; whether by moving or just flying on trips often
