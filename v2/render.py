@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def main(config="config.yaml", intemp="template.html", outtemp="outtemp.html"):
     print("LOG: in main()")
 
