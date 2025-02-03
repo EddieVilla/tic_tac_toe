@@ -18,12 +18,12 @@
     }
     .board {
       display: grid;
-      grid-template-columns: repeat(4, 100px);
-      grid-gap: 5px;
+      grid-template-columns: repeat(50, 20px);
+      grid-gap: 1px;
     }
     .cell {
-      width: 100px;
-      height: 100px;
+      width: 20px;
+      height: 20px;
       background-color: white;
       border: 1px solid #ccc;
       display: flex;
@@ -56,7 +56,7 @@
 </head>
 <body>
   <div>
-    <div class="message">Win by 3</div>
+    <div class="message">Misc</div>
     <div id="debugmessage">div text box</div>
     <div class="board" id="board"></div>
     <div class="message" id="message"></div>
@@ -71,7 +71,7 @@
 
     let currentPlayer = 'X';
     let gameActive = true;
-    let numCells = 16;
+    let numCells = 1450;
     let gameState = Array(numCells).fill(null);
 
     //3x3. win by 3.
