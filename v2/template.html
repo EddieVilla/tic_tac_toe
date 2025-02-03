@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat({{repeat}}, 20px);
+      grid-gap: 1px;
+    }
+    .cell {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    .cell.taken {
+      pointer-events: none;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 1.5rem;
+    }
+    .reset {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .reset:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="message">Misc</div>
+    <div id="debugmessage">div text box</div>
+    <div class="board" id="board"></div>
+    <div class="message" id="message"></div>
+    <button class="reset" id="reset">Reset</button>
+  </div>
+
+  <script>
+    const board = document.getElementById('board');
+    const message = document.getElementById('message');
+    const debugmessage = document.getElementById('debugmessage');
+    const resetButton = document.getElementById('reset');
+
+    let currentPlayer = 'X';
+    let gameActive = true;
+    let numCells = {{numCells}};
+    let gameState = Array(numCells).fill(null);
+
+    //3x3. win by 3.
+    //const winningCombinations = [
+    //  [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    //  [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    //  [0, 4, 8], [2, 4, 6]
+    //]
+    //4x4. win by 4.
+    //const winningCombinations = [
+    //  [0, 1, 2, 3], [4, 5, 6, 7],[8, 9, 10, 11],[12, 13, 14, 15],
+    //  [0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15], 
+    //  [0, 5, 10, 15], [3, 6, 9, 12]
+    //];
+    //4x4. win by 3.
+    const winningCombinations = [
+      [1, 2, 3], [5, 6, 7],[9, 10, 11],[13, 14, 15],
+      [0, 1, 2], [4, 5, 6],[8, 9, 10],[12, 13, 14],
+      [4, 8, 12], [5, 9, 13], [6, 10, 14], [7, 11, 15], 
+      [0, 4, 8], [1, 5, 9], [2, 6, 10], [3, 7, 11], 
+      [5, 10, 15], [6, 9, 12],
+      [0, 5, 10], [3, 6, 9]
+    ];
+
+    function handleClick(event) {
+      const cell = event.target;
+      const cellIndex = cell.getAttribute('data-index');
+      debugmessage.textContent = `Clicked ${cellIndex}`;
+
+      if (gameState[cellIndex] || !gameActive) return;
+
+      gameState[cellIndex] = currentPlayer;
+      cell.textContent = currentPlayer;
+      cell.classList.add('taken');
+
+      if (checkWin()) {
+        message.textContent = `Player ${currentPlayer} wins!`;
+        gameActive = false;
+        return;
+      }
+
+      if (gameState.every(cell => cell !== null)) {
+        message.textContent = 'It\'s a tie!';
+        gameActive = false;
+        return;
+      }
+
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      message.textContent = `Player ${currentPlayer}'s turn`;
+    }
+
+    function checkWin() {
+      return winningCombinations.some(combination => {
+        const [a, b, c] = combination;
+        return gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c];
+      });
+    }
+
+    function resetGame() {
+      gameState = Array(numCells).fill(null);
+      currentPlayer = 'X';
+      gameActive = true;
+      message.textContent = `Player ${currentPlayer}'s turn`;
+      debugmessage.textContent = `game started`;
+      board.innerHTML = '';
+      createBoard();
+    }
+
+    function createBoard() {
+      for (let i = 0; i < numCells; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.setAttribute('data-index', i);
+        cell.addEventListener('click', handleClick);
+        board.appendChild(cell);
+      }
+    }
+
+    resetButton.addEventListener('click', resetGame);
+
+    // Initialize game
+    resetGame();
+  </script>
+</body>
+</html>
+
