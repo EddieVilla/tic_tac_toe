@@ -8,3 +8,10 @@
 - [ ] 3x3win3
 - [ ] Parametrize 3 vs 4 in a row to win
 - [ ] work a lot in Chicago, like there is nothing to do, that way you can go elsewhere to do things; whether by moving or just flying on trips often
+- [ ] make an AI for this game?
+- [ ] turn it into connect four so that each piece drops to the bottom most slot?
+- [ ] convert this to behave like game of life?
+- [ ] convert this to behave like gridworld? (this would be the easiest way to get something like gridworld working on an ipad that is offline)- [ ] convert this to battleship?
+- [ ] convert this to some sort of maze?
+- [ ] implement a visual A* algo in this maze?
+
